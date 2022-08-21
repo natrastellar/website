@@ -26,7 +26,7 @@
 [[Project]]
   Title = "Eagle Overlord"
   Description = "A Discord bot running on the (unofficial) EWU Computer Science server that supports compiling code, role management, and more."
-  Tags = [ "JavaScript", "Node.js" ]
+  Tags = [ "TypeScript", "Node.js" ]
   Image = "img/eagle.png"
   SourceURL = "https://github.com/natplagman/EagleOverlord"
   Alt = "A screenshot of a Discord conversation. A user has entered the command '!compile cpp' to compile the C++ 'Hello, world!' program. Eagle Overlord has responded with the program output."
