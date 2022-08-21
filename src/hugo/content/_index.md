@@ -6,6 +6,7 @@
   Image = "img/sixdegrees.png"
   SourceURL = "https://github.com/natplagman/SixDegreesOfTweetification"
   Alt = "A screenshot of the 'Six Degrees of Tweetification' website. The page displays a word cloud made up of terms related to software development."
+  Resize = "711x400"
 [[Project]]
   Title = "Broken Shadows"
   Description = "A tile-based puzzle game that incorporates dynamic lighting and levels that respond to player movement. Features a built-in level editor."
@@ -13,6 +14,7 @@
   Image = "img/shadows.png"
   SourceURL = "https://github.com/natplagman/Broken-Shadows"
   Alt = "A screenshot of a level from 'Broken Shadows'. The level is made up of blue and white square tiles."
+  Resize = "400x400"
 [[Project]]
   Title = "Pac#"
   Description = "A faithful recreation of everyone's favorite game about yellow geometry and spectres. Features include high scores, sound FX, animations, and four unique AI behaviors."
@@ -20,6 +22,7 @@
   Image = "img/pacsharp.png"
   SourceURL = "https://github.com/natplagman/PacSharp"
   Alt = "A screenshot of Pac#. The player is navigating through a maze eating dots as ghosts give chase."
+  Resize = "311x400"
 [[Project]]
   Title = "Eagle Overlord"
   Description = "A Discord bot running on the (unofficial) EWU Computer Science server that supports compiling code, role management, and more."
