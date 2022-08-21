@@ -8,7 +8,9 @@
           <figure class="project-card">
             {{ $image := resources.Get .Image }}
             {{ with .Resize }}
-              {{ $image = . | printf "%s webp Center" | $image.Fit }}
+              {{ $image = $image.Fit (printf "%s webp" .) }}
+            {{ else }}
+            {{ $image = $image.Resize (printf "%dx%d webp" $image.Width $image.Height) }}
             {{ end }}
             <div class="project-screenshot">
               <img src="{{ $image.Permalink }}" alt="{{ .Alt }}" width="{{ $image.Width }}" height="{{ $image.Height }}"/>
