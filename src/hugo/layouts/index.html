@@ -7,8 +7,11 @@
         {{ range .Params.Project }}
           <figure class="project-card">
             {{ $image := resources.Get .Image }}
+            {{ with .Resize }}
+              {{ $image = . | printf "%s Center" | $image.Fit }}
+            {{ end }}
             <div class="project-screenshot">
-              <img src="{{ $image.Permalink }}" alt="{{ .Alt }}"/>
+              <img src="{{ $image.Permalink }}" alt="{{ .Alt }}" width="{{ $image.Width }}" height="{{ $image.Height }}"/>
             </div>
             <figcaption class="project-content">
               <h2 class="project-title">{{ .Title }}</h2>
