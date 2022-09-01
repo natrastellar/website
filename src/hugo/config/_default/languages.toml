@@ -1,13 +1,14 @@
 [en]
   languagename = "English"
-  title = "Natalie Plagman"
+  title = "Nat"
 
   [en.params]
     info = "Software engineer and hobbyist game developer."
-    description = "Natalie Plagman's personal website"
+    description = "Nat's personal website"
     keywords = "blog,developer,personal"
-    Author = "Natalie Plagman"
-    Email = "me at natplagman dot com"
+    Author = "Nat"
+    Email = "me at natra dot dev"
+    RssTitle = "Nat's Blog"
 
   [en.menu]
     [[en.menu.main]]

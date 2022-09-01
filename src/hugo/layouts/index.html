@@ -5,16 +5,18 @@
       {{ .Content }}
       <div class="projects">
         {{ range .Params.Project }}
-          <figure class="project-card">
-            {{ $image := resources.Get .Image }}
-            {{ with .Resize }}
-              {{ $image = $image.Fit (printf "%s webp" .) }}
-            {{ else }}
-            {{ $image = $image.Resize (printf "%dx%d webp" $image.Width $image.Height) }}
+          <figure class="project-card{{ if .WIP }} wip{{ end}}">
+            {{ if .Image }}
+              {{ $image := resources.Get .Image }}
+              {{ with .Resize }}
+                {{ $image = $image.Fit (printf "%s webp" .) }}
+              {{ else }}
+              {{ $image = $image.Resize (printf "%dx%d webp" $image.Width $image.Height) }}
+              {{ end }}
+              <div class="project-screenshot">
+                <img src="{{ $image.Permalink }}" alt="{{ .Alt }}" width="{{ $image.Width }}" height="{{ $image.Height }}"/>
+              </div>
             {{ end }}
-            <div class="project-screenshot">
-              <img src="{{ $image.Permalink }}" alt="{{ .Alt }}" width="{{ $image.Width }}" height="{{ $image.Height }}"/>
-            </div>
             <figcaption class="project-content">
               <h2 class="project-title">{{ .Title }}</h2>
               <p>{{ .Description }}</p>
@@ -24,7 +26,9 @@
                 {{ end }}
               </div>
               <div class="project-links">
-                <a class="project-link" href="{{ .SourceURL }}">View Code</a>
+                {{ if .SourceURL }}
+                  <a class="project-link" href="{{ .SourceURL }}">View Code</a>
+                {{ end }}
                 {{ if .DemoURL }}
                   <a class="project-link" href="{{ .DemoURL }}">View Demo</a>
                 {{ end }}

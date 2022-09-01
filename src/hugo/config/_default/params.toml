@@ -1,5 +1,5 @@
 wordsPerMinute = 220.0
-Repo = "https://github.com/natplagman/natplagman.com"
+Repo = "https://github.com/natrastellar/website"
 favicons = [16, 32, 128]
 apple_favicons = [152, 167, 180, 192]
 
@@ -7,13 +7,23 @@ apple_favicons = [152, 167, 180, 192]
     name = "Github"
     icon = "img/icons.svg"
     id = "github"
-    weight = 1
-    url = "https://github.com/natplagman/"
-    user = "natplagman"
+    url = "https://github.com/natrastellar/"
+    user = "natrastellar"
 [[social]]
-    name = "Linkedin"
+    name = "Cohost"
     icon = "img/icons.svg"
-    id = "linkedin"
-    weight = 4
-    url = "https://www.linkedin.com/in/natplagman/"
-    user = "natplagman"
+    id = "eggbug"
+    url = "https://cohost.org/natrastellar/"
+    user = "natrastellar"
+[[social]]
+    name = "Mastodon"
+    icon = "img/icons.svg"
+    id = "mastodon"
+    url = "https://plural.cafe/@natrastellar/"
+    user = "natrastellar"
+[[social]]
+    name = "Twitter"
+    icon = "img/icons.svg"
+    id = "twitter"
+    url = "https://twitter.com/natrastellar/"
+    user = "natrastellar"
