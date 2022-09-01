@@ -10,7 +10,7 @@
           <ul class="post-list">
             {{ range $paginator.Pages }}
               <li>
-                <a href="{{ .Permalink }}">
+                <a href="{{ .RelPermalink }}">
                   <span class="post-meta">{{ .Date.Format "January 2, 2006" }}</span>
                   <h3><span class="post-link-header">{{ .Title }}</span></h3>
                   {{ if .Params.Subtitle }}
@@ -42,7 +42,7 @@
     
           {{ with .OutputFormats.Get "rss" -}}
             <p class="rss-subscribe">subscribe
-              <a href="{{ .Permalink }}">via RSS</a>
+              <a href="{{ .RelPermalink }}">via RSS</a>
             </p>
           {{ end -}}
         {{ end }}
