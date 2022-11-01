@@ -18,7 +18,7 @@
         <div class="footer-col">
           <ul>
             {{ range .Site.Params.Social }}
-              <li>
+              <li class="social-item">
                 <svg class="svg-icon" aria-label="{{ .name }}">
                   <use href="{{ (resources.Get .icon).Permalink }}#{{ .id }}"></use>
                 </svg>
