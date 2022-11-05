@@ -253,7 +253,6 @@ a, button {
     }
 
     .page-link {
-      display: inline-block;
       line-height: 54px;
       padding: 0px 10px;
     }
@@ -286,7 +285,6 @@ a, button {
 }
 
 #theme-toggle {
-  display: flex;
   align-self: stretch;
   align-items: center;
   justify-content: center;
@@ -327,7 +325,6 @@ a, button {
       }
 
       .page-link {
-        display: block;
         padding: 0 10px;
       }
     }
