@@ -12,7 +12,7 @@ apple_favicons = [152, 167, 180, 192]
 [[social]]
     name = "Cohost"
     icon = "img/icons.svg"
-    id = "eggbug"
+    id = "cohost"
     url = "https://cohost.org/natrastellar/"
     user = "natrastellar"
 [[social]]

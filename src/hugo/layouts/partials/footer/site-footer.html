@@ -19,7 +19,7 @@
           <ul>
             {{ range .Site.Params.Social }}
               <li class="social-item">
-                <svg class="svg-icon" aria-label="{{ .name }}">
+                <svg class="svg-icon {{ if eq .name "Cohost"}}cohost-icon{{ end }}" aria-label="{{ .name }}">
                   <use href="{{ (resources.Get .icon).Permalink }}#{{ .id }}"></use>
                 </svg>
                 <a href="{{ .url }}">{{ .name }}</a>
