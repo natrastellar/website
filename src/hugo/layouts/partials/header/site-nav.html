@@ -15,5 +15,11 @@
         <a class="page-link" href="{{ .URL }}">{{ .Name }}</a>
       {{ end }}
     {{ end }}
+    <button id="theme-toggle" class="page-link" type="button" aria-label="Toggle Theme">
+      <svg role="img" width="1.5em" height="1.5em">
+        <title>Toggle Theme</title>
+        <use href="{{ (resources.Get "img/icons.svg").Permalink }}#theme-toggle"></use>
+      </svg>
+    </button>
   </div>
 </nav>

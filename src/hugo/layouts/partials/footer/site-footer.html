@@ -41,6 +41,8 @@
       <span>© {{ now.Year }} under the&nbsp;<a href="https://opensource.org/licenses/MIT">MIT license</a>.</span>
     </div>
   </div>
-  {{ $js := resources.Get "js/clipboard.js" | resources.Minify }}
+  {{ $clipboard := resources.Get "js/clipboard.js" | resources.Minify }}
+  {{ $theme := resources.Get "js/theme.js" | resources.Minify }}
+  {{ $js := slice $clipboard $theme | resources.Concat "js/bundle.js" }}
   <script type="text/javascript" src="{{ $js.Permalink }}"></script>
 </footer>
