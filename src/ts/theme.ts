@@ -11,18 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleTheme();
   });
   if (localStorage.getItem(THEME_KEY) === DARK_THEME_VALUE) {
-    document.body.classList.add(DARK_THEME_CLASS);
     setTheme(true);
   }
   else if (localStorage.getItem(THEME_KEY) === LIGHT_THEME_VALUE) {
-    document.body.classList.add(LIGHT_THEME_CLASS);
     setTheme(false);
   }
 });
 
 function toggleTheme() {
   const theme = localStorage.getItem(THEME_KEY);
-  const dark = theme ? theme === DARK_THEME_VALUE : window.matchMedia("prefers-color-scheme: dark").matches;
+  const dark = theme ? theme === DARK_THEME_VALUE : window.matchMedia('(prefers-color-scheme: dark)').matches;
   setTheme(!dark);
 }
 
