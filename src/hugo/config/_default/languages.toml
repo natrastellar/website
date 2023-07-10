@@ -7,7 +7,7 @@
     description = "Nat's personal website"
     keywords = "blog,developer,personal"
     Author = "Nat"
-    Email = "me at natra dot dev"
+    Email = "hello at natra dot dev"
     RssTitle = "Nat's Blog"
 
   [en.menu]

@@ -15,15 +15,3 @@ apple_favicons = [152, 167, 180, 192]
     id = "cohost"
     url = "https://cohost.org/natrastellar/"
     user = "natrastellar"
-[[social]]
-    name = "Mastodon"
-    icon = "img/icons.svg"
-    id = "mastodon"
-    url = "https://plural.cafe/@natrastellar/"
-    user = "natrastellar"
-[[social]]
-    name = "Twitter"
-    icon = "img/icons.svg"
-    id = "twitter"
-    url = "https://twitter.com/natrastellar/"
-    user = "natrastellar"
