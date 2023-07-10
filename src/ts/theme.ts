@@ -25,6 +25,10 @@ function toggleTheme() {
 }
 
 function setTheme(dark: boolean) {
+  let root = document.getRootNode().parentElement;
+  if (root) {
+    setElementTheme(root, dark);
+  }
   setElementTheme(document.body, dark);
   const themedElementTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'button', 'nav', 'label', 'svg', 'header', 'li', 'footer'];
   for (const name of themedElementTags) {
