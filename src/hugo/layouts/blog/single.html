@@ -18,6 +18,13 @@
           </div>
         </header>
 
+        {{ if and (gt .WordCount 400 ) (.Params.toc) }}
+          <aside class="table-of-contents">
+            <h3>Contents</h3>
+            {{ .TableOfContents }}
+          </aside>
+        {{ end }}
+  
         <div class="post-content e-content" itemprop="articleBody">
           {{ .Content }}
         </div>

@@ -8,6 +8,7 @@ aliases = [
     "/blog/posts/on-jekyll/"
 ]
 summary = "In which I realize the utility of static site generators."
+toc = false
 +++
 {{% update %}}
 I've been using Hugo instead of Jekyll for several years.

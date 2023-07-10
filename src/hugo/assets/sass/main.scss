@@ -567,6 +567,25 @@ ul.pager {
   }
 }
 
+.table-of-contents {
+  padding: 0.25em 0.5em;
+  margin-bottom: 1em;
+  background-color: $light-primary-color;
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-tertiary-color;
+  }
+  &.light {
+    background-color: $light-primary-color;
+  }
+  &.dark {
+    background-color: $dark-tertiary-color;
+  }
+
+  li {
+    list-style-type: none;
+  }
+}
+
 .post-content li {
   list-style-type: inherit;
   margin-left: 1em;
@@ -747,4 +766,53 @@ canvas {
   &:focus {
     left: inherit;
   }
+}
+
+// Scrollbar tricks
+// Firefox
+* {
+  scrollbar-width: auto;
+  scrollbar-color: $light-primary-color $light-tertiary-color;
+  @media (prefers-color-scheme: dark) {
+    scrollbar-color: $dark-primary-color $dark-tertiary-color;
+  }
+  &.light {
+    scrollbar-color: $light-primary-color $light-tertiary-color;
+  }
+  &.dark {
+    scrollbar-color: $dark-primary-color $dark-tertiary-color;
+  }
+}
+
+// Chrome, Edge, and Safari
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $light-tertiary-color;
+  @media (prefers-color-scheme: dark) {
+    background: $dark-tertiary-color;
+  }
+  &.light {
+    background: $light-tertiary-color;
+  }
+  &.dark {
+    background: $dark-tertiary-color;
+  }
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $light-primary-color;
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-primary-color;
+  }
+  &.light {
+    background-color: $light-primary-color;
+  }
+  &.dark {
+    background-color: $dark-primary-color;
+  }
+  border-radius: 10px;
+  border: 1px none #ffffff;
 }
