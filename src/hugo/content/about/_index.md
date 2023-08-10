@@ -4,7 +4,7 @@ title = "About Me"
 
 # About Me
 
-I'm Nat!
+I'm Marin!
 
 I've been programming (either teaching myself, attending school, working, or doing side projects) for well over a decade after discovering [Scratch][Scratch] as a child.
 
