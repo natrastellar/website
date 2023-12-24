@@ -9,6 +9,7 @@ aliases = [
 ]
 summary = "In which I realize the utility of static site generators."
 toc = false
+draft = true
 +++
 {{% update %}}
 I've been using Hugo instead of Jekyll for several years.
