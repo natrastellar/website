@@ -1,8 +1,8 @@
 +++
 [[Project]]
   Title = "Roolah"
-  Description = "An upcoming budgeting and productivity app designed for neurodivergent brains."
-  Tags = [ "Rust" ]
+  Description = "A budgeting and productivity app designed for neurodivergent brains."
+  Tags = [ "Rust", "SQL" ]
   SourceURL = "https://github.com/natrastellar/roolah"
   WIP = true
 [[Project]]
