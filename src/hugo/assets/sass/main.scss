@@ -388,7 +388,7 @@ a, button {
   }
 
   .project-content {
-    padding: 2em;
+    padding: 1em;
     flex: 2;
     transition: all .5s ease;
 
@@ -412,9 +412,9 @@ a, button {
         &.dark {
           border-color: $dark-primary-color;
         }
-        padding: 8px;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        padding: 3px 6px;
+        margin-right: 5px;
+        margin-bottom: 5px;
         font-size: .85em;
       }
     }
@@ -422,15 +422,15 @@ a, button {
     .project-links {
       display: flex;
       justify-content: flex-start;
-      margin-top: 20px;
+      margin-top: 5px;
       
       .project-link {
-        margin: 10px 20px 0 0;
+        margin: 5px 10px 0 0;
         white-space: nowrap;
         display: inline-block;
         height: 40px;
         line-height: 40px;
-        padding: 0 14px;
+        padding: 0 8px;
         box-shadow: 0 1px 3px $light-primary-color;
         @media (prefers-color-scheme: dark) {
           box-shadow: none;
