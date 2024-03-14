@@ -1,5 +1,5 @@
 wordsPerMinute = 220.0
-Repo = "https://github.com/morine/website"
+Repo = "https://github.com/remorae/website"
 favicons = [16, 32, 128]
 apple_favicons = [152, 167, 180, 192]
 
@@ -7,8 +7,8 @@ apple_favicons = [152, 167, 180, 192]
     name = "Github"
     icon = "img/icons.svg"
     id = "github"
-    url = "https://github.com/morine/"
-    user = "morine"
+    url = "https://github.com/remorae/"
+    user = "remorae"
 [[social]]
     name = "Cohost"
     icon = "img/icons.svg"
