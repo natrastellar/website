@@ -1,5 +1,5 @@
 wordsPerMinute = 220.0
-Repo = "https://github.com/natrastellar/website"
+Repo = "https://github.com/morine/website"
 favicons = [16, 32, 128]
 apple_favicons = [152, 167, 180, 192]
 
@@ -7,11 +7,11 @@ apple_favicons = [152, 167, 180, 192]
     name = "Github"
     icon = "img/icons.svg"
     id = "github"
-    url = "https://github.com/natrastellar/"
-    user = "natrastellar"
+    url = "https://github.com/morine/"
+    user = "morine"
 [[social]]
     name = "Cohost"
     icon = "img/icons.svg"
     id = "cohost"
-    url = "https://cohost.org/natatorialremnants/"
-    user = "natatorialremnants"
+    url = "https://cohost.org/morine/"
+    user = "morine"

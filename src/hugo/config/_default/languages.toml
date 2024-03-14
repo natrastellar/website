@@ -1,14 +1,14 @@
 [en]
   languagename = "English"
-  title = "Marin"
+  title = "Mori"
 
   [en.params]
     info = "Software engineer and hobbyist game developer."
-    description = "Marin's personal website"
+    description = "Mori's personal website"
     keywords = "blog,developer,personal"
-    Author = "Marin"
-    Email = "hello at natra dot dev"
-    RssTitle = "Marin's Blog"
+    Author = "Mori"
+    Email = "hello at morine dot net"
+    RssTitle = "Mori's Blog"
 
   [en.menu]
     [[en.menu.main]]

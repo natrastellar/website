@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/37ea850f-8c42-42af-84ce-8305756f6ac3/deploy-status)](https://app.netlify.com/sites/natra/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/37ea850f-8c42-42af-84ce-8305756f6ac3/deploy-status)](https://app.netlify.com/sites/morine/deploys)
 
 # Requirements
 
