@@ -12,7 +12,7 @@
               <address>{{ .Site.Params.Email }}</address>
             </li>
           </ul>
-          <span><a href="https://pronouns.within.lgbt/ray/rem/rayr/rayrs/remself">ray/rem</a></span>
+          <span>{{ .Site.Params.Pronouns1 }} or <a href="{{ .Site.Params.PronounsSite }}">{{ .Site.Params.Pronouns2 }}</a></span>
         </div>
   
         <div class="footer-col">
@@ -29,7 +29,6 @@
         </div>
   
         <div class="footer-col info-col">
-          <p>{{ .Site.Params.Info }}</p>
           <p>Built with&nbsp;<a href="https://gohugo.io/">Hugo</a>. Find the site&nbsp;<a href="{{ .Site.Params.Repo }}">source code here</a>.</p>
         </div>
       </div>
@@ -38,7 +37,6 @@
       <noscript><a class="page-link" href="#">Back to top</a></noscript>
       <button hidden id="top-page-link" class="page-link" onclick="document.body.scrollIntoView({ behavior: 'smooth' });">Back to top</button>
       <script>document.getElementById('top-page-link').hidden = false;</script>
-      <span>© {{ now.Year }} under the&nbsp;<a href="https://opensource.org/licenses/MIT">MIT license</a>.</span>
     </div>
   </div>
   {{ $clipboard := resources.Get "js/clipboard.js" | resources.Minify }}

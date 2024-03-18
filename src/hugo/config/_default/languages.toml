@@ -3,12 +3,14 @@
   title = "Mori"
 
   [en.params]
-    info = "Software engineer and hobbyist game developer."
     description = "Mori's personal website"
     keywords = "blog,developer,personal"
     Author = "Mori"
     Email = "hello at morine dot net"
     RssTitle = "Mori's Blog"
+    Pronouns1 = "they/she"
+    Pronouns2 = "ray/rem"
+    PronounsSite = "https://pronouns.within.lgbt/ray/rem/rayr/rayrs/remself"
 
   [en.menu]
     [[en.menu.main]]
