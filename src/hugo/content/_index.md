@@ -2,7 +2,7 @@
 [[Project]]
   Title = "Wanikanjector"
   Description = "A Firefox extension that replaces English words with ones learned on https://www.wanikani.com."
-  Tags = [ "JavaScript" ]
+  Tags = [ "JavaScript", "HTML", "CSS" ]
   SourceURL = "https://github.com/remorae/wanikanjector"
   WIP = true
 [[Project]]
@@ -10,6 +10,7 @@
   Description = "A budgeting and productivity app."
   Tags = [ "Rust", "SQL" ]
   SourceURL = "https://github.com/remorae/roolah"
+  BlogURL = "/blog/roolah"
   WIP = true
 [[Project]]
   Title = "Eagle Overlord"
@@ -19,7 +20,7 @@
 [[Project]]
   Title = "Six Degrees of Tweetification"
   Description = "A web application for viewing relationships between people, hashtags, and locations on Twitter. "
-  Tags = [ "C#", "TypeScript" ]
+  Tags = [ "C#", "TypeScript", "HTML", "CSS" ]
   SourceURL = "https://github.com/remorae/SixDegreesOfTweetification"
 +++
 - I'm a software engineer in the Pacific Northwest.

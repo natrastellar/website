@@ -31,6 +31,9 @@
                 {{ if .DemoURL }}
                   <a class="project-link" href="{{ .DemoURL }}">View Demo</a>
                 {{ end }}
+                {{ if .BlogURL }}
+                  <a class="project-link" href="{{ .BlogURL }}">Read Blog Post</a>
+                {{ end }}
               </div>
             </figcaption>
           </figure>
