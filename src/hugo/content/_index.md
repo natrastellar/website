@@ -16,6 +16,11 @@
   Description = "A Discord bot featuring commands for compiling code and tools for server administration."
   Tags = [ "TypeScript", "Node.js" ]
   SourceURL = "https://github.com/remorae/eagle-overlord"
+[[Project]]
+  Title = "Six Degrees of Tweetification"
+  Description = "A web application for viewing relationships between people, hashtags, and locations on Twitter. "
+  Tags = [ "C#", "TypeScript" ]
+  SourceURL = "https://github.com/remorae/SixDegreesOfTweetification"
 +++
 - I'm a software engineer in the Pacific Northwest.
 - Here are some of my past and current projects:
