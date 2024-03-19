@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <main id="main" class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <h1 id="contact">Contact <wbr>Me</h1>
+      <ul>
+        <li>Pronouns - {{ .Site.Params.Pronouns1 }} or <a href="{{ .Site.Params.PronounsSite }}">{{ .Site.Params.Pronouns2 }}</a></li>
+        <li>Email - <address>{{ .Site.Params.Email }}</address></li>
+        {{ range .Site.Params.Social }}
+          <li class="social-item">
+            {{ .name }}
+            - <a href="{{ .url }}">{{ .user }}</a>
+          </li>
+        {{ end }}
+      </ul>
+  </div>
+  </main>
+{{ end }}

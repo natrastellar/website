@@ -1,37 +1,7 @@
 <footer class="site-footer">
   <div class="wrapper">
-    <div class="footer-content">
-      <h2 id="contact" class="footer-heading">Contact <wbr>Me</h2>
-      <div class="footer-main">
-        <div class="footer-col">
-          <ul>
-            <li>
-              {{ .Site.Params.Author }}
-            </li>
-            <li>
-              <address>{{ .Site.Params.Email }}</address>
-            </li>
-          </ul>
-          <span>{{ .Site.Params.Pronouns1 }} or <a href="{{ .Site.Params.PronounsSite }}">{{ .Site.Params.Pronouns2 }}</a></span>
-        </div>
-  
-        <div class="footer-col">
-          <ul>
-            {{ range .Site.Params.Social }}
-              <li class="social-item">
-                <svg class="svg-icon {{ if eq .name "Cohost"}}cohost-icon{{ end }}" aria-label="{{ .name }}">
-                  <use href="{{ (resources.Get .icon).Permalink }}#{{ .id }}"></use>
-                </svg>
-                <a href="{{ .url }}">{{ .name }}</a>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
-  
-        <div class="footer-col info-col">
-          <p>Built with&nbsp;<a href="https://gohugo.io/">Hugo</a>. Find the site&nbsp;<a href="{{ .Site.Params.Repo }}">source code here</a>.</p>
-        </div>
-      </div>
+    <div class="flex-center flex-col">
+      <p>Built with&nbsp;<a href="https://gohugo.io/">Hugo</a>. Find the site&nbsp;<a href="{{ .Site.Params.Repo }}">source code here</a>.</p>
     </div>
     <div class="flex-center flex-col">
       <noscript><a class="page-link" href="#">Back to top</a></noscript>

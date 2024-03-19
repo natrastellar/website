@@ -24,5 +24,4 @@
     [[en.menu.main]]
       name = "Contact"
       weight = 3
-      url = "#contact"
-      identifier = "Contact"
+      url = "/contact/"

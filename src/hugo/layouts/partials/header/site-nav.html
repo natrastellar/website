@@ -7,13 +7,7 @@
   </label>
   <div class="nav-popout">
     {{ range .Site.Menus.main }}
-      {{ if eq .Identifier "Contact" }}
-        <button hidden id="contact-page-link" class="page-link" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">{{ .Name }}</button>
-        <script>let contact = document.getElementById('contact-page-link'); contact.hidden = false; contact.style.display = "flex";</script>
-        <noscript><a class="page-link" href="{{ .URL }}" style="display: inherit">{{ .Name }}</a></noscript>
-        {{ else }}
-        <a class="page-link" href="{{ .URL }}">{{ .Name }}</a>
-      {{ end }}
+      <a class="page-link" href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
     <button hidden id="theme-toggle" class="page-link" type="button" aria-label="Toggle Theme">
       <svg role="img" width="1.5em" height="1.5em">
