@@ -1,0 +1,44 @@
+{{ define "main" }}
+  <main id="main" class="page-content">
+    <div class="wrapper">
+      <div class="tags">
+        {{ $paginator := .Paginate .Pages }}
+        {{ if gt $paginator.TotalPages 0 }}
+          <h2 class="post-list-heading">Posts Tagged With '{{ .Title }}'</h2>
+          <ul class="post-list">
+            {{ range $paginator.Pages }}
+              <li>
+                <a href="{{ .RelPermalink }}">
+                  <span class="post-meta">{{ .Date.Format "January 2, 2006" }}</span>
+                  <h3><span class="post-link-header">{{ .Title }}</span></h3>
+                  {{ if .Params.Subtitle }}
+                    <h4>{{ .Params.Subtitle }}</h4>
+                  {{ end }}
+                  {{ .Summary }}
+                  {{ if .Truncated }}
+                    <span>...</span>
+                  {{ end}}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+    
+          {{ if gt $paginator.TotalPages 1 }}
+            <ul class="pager">
+              {{ if $paginator.HasPrev }}
+                <li class="previous">
+                  <a href="{{ $paginator.Prev.URL }}">&larr; Newer Posts</a>
+                </li>
+              {{ end }}
+              {{ if $paginator.HasNext }}
+                <li class="next">
+                  <a href="{{ $paginator.Next.URL }}">Older Posts &rarr;</a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        {{ end }}     
+      </div>
+    </div>
+  </main>
+{{end }}

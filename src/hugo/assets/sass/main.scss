@@ -663,6 +663,14 @@ ul.pager {
   font-size: 28px;
 }
 
+ul.tags {
+  list-style: none;
+
+  li {
+    display: inline-block;
+  }
+}
+
 .site-footer {
   width: 100%;
   border-top-color: $light-text-color;

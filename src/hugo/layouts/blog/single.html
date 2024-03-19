@@ -32,16 +32,16 @@
         {{ if or (.Params.Topics) (.Params.Tags) }}
           <div>
             {{ with .Params.Topics }}
-              <ul id="topics">
+              <ul class="topics">
                 {{ range . }}
-                  <li><a href="{{ "topics" | absURL }}{{ . | urlize }}">{{ . }}</a> </li>
+                  <li><a href="{{ "topics" | absURL }}/{{ . | urlize }}/">{{ . }}</a> </li>
                 {{ end }}
               </ul>
             {{ end }}
             {{ with .Params.Tags }}
-              <ul id="tags">
+              <ul class="tags">
                 {{ range . }}
-                  <li> <a href="{{ "tags" | absURL }}{{ . | urlize }}">{{ . }}</a> </li>
+                  <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}/">#{{ . }}</a> </li>
                 {{ end }}
               </ul>
             {{ end }}
