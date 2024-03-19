@@ -1,5 +1,11 @@
 +++
 [[Project]]
+  Title = "Wanikanjector"
+  Description = "A Firefox extension that replaces English words with ones learned on https://www.wanikani.com."
+  Tags = [ "JavaScript" ]
+  SourceURL = "https://github.com/remorae/wanikanjector"
+  WIP = true
+[[Project]]
   Title = "Roolah"
   Description = "A budgeting and productivity app."
   Tags = [ "Rust", "SQL" ]
