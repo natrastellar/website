@@ -3,3 +3,4 @@ resources
 dist
 .hugo_build.lock
 src/hugo/assets/js
+build
