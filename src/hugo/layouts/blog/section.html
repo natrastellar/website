@@ -9,10 +9,10 @@
           <h2 class="post-list-heading">Posts</h2>
           <ul class="post-list">
             {{ range $paginator.Pages }}
-              <li>
+              <li class="post-list-item">
                 <a href="{{ .RelPermalink }}">
                   <span class="post-meta">{{ .Date.Format "January 2, 2006" }}</span>
-                  <h3><span class="post-link-header">{{ .Title }}</span></h3>
+                  <h3 class="post-link-header">{{ .Title }}</h3>
                   {{ if .Params.Subtitle }}
                     <h4>{{ .Params.Subtitle }}</h4>
                   {{ end }}
