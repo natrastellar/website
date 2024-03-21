@@ -613,8 +613,9 @@ ul.pager {
 }
 
 .article-note {
-  padding: 1em;
-  border-radius: 1em;
+  padding: .5em .5em;
+  margin-bottom: .5em;
+  border-radius: .5em;
   background-color: $light-note-background-color;
   color: $light-text-color;
   @media (prefers-color-scheme: dark) {
