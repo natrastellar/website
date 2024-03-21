@@ -4,6 +4,7 @@ subtitle = "Roolah Devlog #1"
 date = 2022-11-27
 summary = "Diagnosing and fixing a problem in my latest pet project."
 tags = ["roolah", "rust", "development"]
+toc = true
 +++
 
 I've been planning/working on a project for a little bit that I call Roolah. The names comes from the term "moolah", i.e. money, and the fact it's written in Rust. I thought it might be fun to share development updates!
