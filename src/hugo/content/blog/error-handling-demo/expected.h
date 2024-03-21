@@ -21,10 +21,10 @@ namespace mori {
         template<class U, class... Args> requires (std::is_constructible_v<E, std::initializer_list<U>&, Args...>)
         constexpr explicit unexpected(std::in_place_t, std::initializer_list<U> il, Args&&... args) : unex(il, std::forward<Args>(args)...) {}
 
-        [[nodiscard]] const E& error() const & noexcept { return unex; }
-        [[nodiscard]] E& error() & noexcept { return unex; }
-        [[nodiscard]] const E&& error() const && noexcept { return std::move(unex); }
-        [[nodiscard]] E&& error() && noexcept { return std::move(unex); }
+        [[nodiscard]] constexpr const E& error() const & noexcept { return unex; }
+        [[nodiscard]] constexpr E& error() & noexcept { return unex; }
+        [[nodiscard]] constexpr const E&& error() const && noexcept { return std::move(unex); }
+        [[nodiscard]] constexpr E&& error() && noexcept { return std::move(unex); }
 
         template<class E2>
         [[nodiscard]] friend constexpr bool operator==(const unexpected& x, const unexpected<E2>& y) {
@@ -35,7 +35,6 @@ namespace mori {
             using std::swap;
             swap(error(), other.error());
         }
-
         friend constexpr void swap(unexpected& x, unexpected& y) noexcept(noexcept(x.swap(y))) { x.swap(y); }
 
     private:
