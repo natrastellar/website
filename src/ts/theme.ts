@@ -30,7 +30,7 @@ function setTheme(dark: boolean) {
     setElementTheme(root, dark);
   }
   setElementTheme(document.body, dark);
-  const themedElementTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'button', 'nav', 'label', 'svg', 'header', 'li', 'footer'];
+  const themedElementTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'button', 'nav', 'label', 'svg', 'header', 'li', 'footer', 'code'];
   for (const name of themedElementTags) {
     const elements = document.getElementsByTagName(name);
     for (let i = 0; i < elements.length; ++i) {
