@@ -24,7 +24,8 @@
 				"--destination",
 				"${workspaceRoot}/dist",
 				"--config",
-				"config.toml,shared.toml"
+				"config.toml,shared.toml",
+                "--buildDrafts",
 			],
 			"group": {
 				"kind": "build",
