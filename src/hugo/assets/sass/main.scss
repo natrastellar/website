@@ -777,7 +777,8 @@ code:not(.highlight code) {
     right: 5px;
     color: $dark-link-color;
     padding: 1px 4px;
-    background-color: darken(#282a36, 10%);
+    background-color: darken(#282a36,7%);
+    border-radius: 5px;
     &:hover {
       color: $light-text-color;
       background-color: $dark-primary-color;
