@@ -16,16 +16,16 @@ I'm excited about C++23 for several reasons, but one of the biggest is the new h
 ## Wait, C++23? Isn't it 2024?
 
 When it comes to new revisions of the C++ standard, Apple often lags behind Microsoft... particularly when it comes to some of the best new additions to the standard library, like format or ranges.
-I came up with the idea for this post in November 2022. At the time, GCC and MSVC had already implemented \<expected\>[^1], but we poor, unfortunate souls relying on Apple Clang had to wait.
+I came up with the idea for this article in November 2022. At the time, GCC and MSVC had already implemented \<expected\>[^1], but we poor, unfortunate souls relying on Apple Clang had to wait.
 In fact, we had to wait so long that I ended up implementing the header myself.
 This wasn't too much of a burden since we *did* have access to C++20 concepts on all platforms at the time.
 The benefits have been well worth the effort.
 
-I originally intended the initial portion of this post to be about that implementation process as well as an explanation of what `std::expected` is.
+I originally intended the initial portion of this article to be about that implementation process as well as an explanation of what `std::expected` is.
 However, as of a few weeks ago, Apple Clang finally supports [monadic operations for std::expected](https://wg21.link/P2505R5) in Xcode 15.3![^2]
-This means implementing std::expected is unnecessary for teams that can update to the latest version of Xcode.
-Still, for those who can't update, or are stuck using C++20 on any platform, it might still be useful.
+This means implementing std::expected is unnecessary for teams that can update to the latest version of Xcode, but it might still be useful for those who can't update, or are stuck using C++20 on any platform.
 Additionally, [LWG 3836](https://cplusplus.github.io/LWG/issue3836) led to some important changes to the standard that weren't reflected in my original implementation.
+I might talk about these changes in the future, but for now, I'm going to assume most people reading this aren't very interested in C++ standardese and instead focus on how to *use* `std::expected`.
 
 Given all that, without further ado, let's start by taking a look at what C++23 gives us!
 
@@ -37,7 +37,7 @@ Given all that, without further ado, let's start by taking a look at what C++23 
 Before we can talk about `std::expected`, we have to talk about its little sibling, `std::unexpected`.
 
 ```cpp
-// Requires clauses and noexcept operator expressions have been omitted for brevity.
+// Requires clauses and noexcept operator expressions have been omitted for readability.
 template<class E> requires (/*...*/)
 class unexpected {
 public:
@@ -70,7 +70,7 @@ public:
 - It can be constructed using the forwarding constructor or in-place any number of arguments, preceeded by an optional `std::initializer_list`. All constructors allow for conversions.
 - It's copyable, it's movable, and it's swappable.
 - The inner value can be accessed freely via the `error()` member function.
-- It can be compared against another `std::unexpected` object, which may or may not have the same type.
+- It can be compared against another `std::unexpected` object - which may or may not have the same type - to see if the two are equal.
 - All of its member functions are usable at compile time. Hurray!
 
 There are some additional limitations on `E`:
@@ -91,7 +91,7 @@ To really understand why `std::unexpected` exists, we have to look at `std::expe
 
 ## Inspecting the std::expected
 
-`std::expected` isn't too conceptually complicated... but it provides a lot of sugar, *and* it tries to be as zero-cost as possible.
+`std::expected` isn't too conceptually complicated... but it provides a lot of syntactical sugar, *and* it tries to be as zero-cost as possible.
 That means the class template definition is pretty long.
 Let's look at it in smaller pieces.
 
@@ -111,8 +111,12 @@ public:
 };
 ```
 
-To start with, the template takes two type parameters: `T` and `E`, corresponding to a value ("expected") type and error type, respectively.
-`std::expected` can be thought of as a wrapper type similar to a `std::variant<T, E>`, also acting as a type-safe union, but much more user-friendly.[^3]
+To start with, the template takes two type parameters: `T` and `E`, corresponding to a value - or "expected" - type and an error type, respectively.
+`std::expected<T, E>` can be thought of as a wrapper type similar to a `std::variant<T, E>`, also acting as a type-safe union, but serving a more narrow purpose and ending up much more user-friendly.[^3]
+
+`T` can be `void` or any destructible type (not an array or reference). `E` must be destructible and legal to use in `std::unexpected`.
+`std::expected<void, E>` behaves rather similarly to `std::optional<E>`, but with seemingly inverted logic; for example, `has_value()`, which we'll see later, would indicate that there *isn't* an error.
+
 Additionally, we have a few type aliases.
 These come in handy when writing templates.
 
@@ -157,7 +161,7 @@ class expected {
 Next, we have the constructors and destructor.
 From these, we can ascertain the following information:
 - `std::expected` is default-constructible, provided the value type `T` is, and will default to holding an expected value.
-- It is copyable and movable, provided both contained types are.
+- It is also copyable and movable, provided both contained types are.
 - There are converting constructors to the value type, from other `std::expected` objects, and from `std::unexpected`!
   More on this below.
 - Both the value type *and* the error type can be constructed in-place.
@@ -204,12 +208,12 @@ class expected {
 };
 ```
 
-It probably won't be very surprising that `std::expected` is swappable.
-We can also emplace a value, much like `std::optional` or `std::variant`.
+Considering `std::unexpected` is swappable, it probably won't be very surprising that `std::expected` is swappable too.
+We can also `emplace()` a value, much like `std::optional` or `std::variant`.
 
-### A Simple Example
+### A Simple Example - Renaming Files
 
-You might be starting to see why `std::unexpected` is useful: it indicates to the compiler that we want to - often implicitly -  construct a `std::expected` object holding an error value.
+You might have picked up on why `std::unexpected` is useful: it indicates to the compiler that we want to - often implicitly -  construct a `std::expected` object holding an error value.
 This avoids having to explicitly construct a `std::expected` object and pass `std::unexpect`.
 Here's an example of this in action:
 
@@ -229,26 +233,27 @@ std::expected<bool, std::error_code> renameFile(
 }
 ```
 
-You might be wondering why `std::expected` benefits us here.
+Let's examine how and why `std::expected` benefits us here.
 A caller of `renameFile` can easily determine:
 1. Whether or not renaming the file succeeded.
 2. Whether or not the file path was unchanged.
 3. If renaming the file failed, what error code was returned.
 
 Before `std::expected`, providing all of this information in the function return type alone might have been difficult or unwieldy!
-Before, we'd have to either pass in an out parameter by reference, return a `std::pair`, return a `std::variant`, create a bespoke return type that encapsulates the same data, or throw an exception.
+Before, we'd have to either pass in an out parameter by reference, return a `std::pair`, create a bespoke return type that encapsulates the same data, return a `std::variant`, or throw an exception.
 None of these options are ideal:
 - Out parameters passed by reference aren't easily distinguishable from in-out parameters.
-  Additionally, constructing both the success type and the failure type ahead of time might be expensive.
+  Additionally, constructing both the success type and the failure type ahead of time might be expensive both computationally and in terms of memory usage.
 - `std::pair` isn't very readable at a glance.
   What is `first`? What is `second`?
   There's nothing indicating that only one of the two members should be used.
-- `std::variant` requires lots of `std::get_if<...>()`.
-- No one wants to litter the code with a bunch of different tiny classes/structs simply for returning multiple pieces of information... but when space isn't a concern, this might have been the most readable option in the past.
+  Similarly, if one or both types are large, this isn't the optimal use of memory.
+- With a bespoke struct (or small class), there's still nothing indicating that only one of the two members should be used, and we're still not making optimal use of memory.
+- `std::variant` requires lots of `std::get_if<...>()`, which makes code more complex and less readable.
 - Passing information by exceptions is not always possible, and even when it is, an uncaught exception could easily terminate the program.
   Throwing an exception solely to pass information places a much larger burden on callers. I believe that exceptions are best kept limited to truly exceptional situations, especially when a better alternative exists.
 
-Now imagine how much more difficult it would have been if we needed to pass this error information way up the callstack. Especially so if we needed what the "success" type was.
+For comparison's sake, imagine how much more difficult it would have been if we needed to pass this error information way up the callstack. Especially so if callers needed to vary what the "success" type was.
 
 ### Accessors
 
@@ -279,7 +284,56 @@ class expected {
 };
 ```
 
+Turns out there's plenty more to `std::expected`!
+
+Being dereferenceable, convertible to a bool, and exposing a value, this portion of `std::expected`'s API makes it even more similar to `std::optional`.
+However, it has something `std::optional` doesn't: `error()`.
+You'll notice this is similar to `std::unexpected`.
+
+Neither `operator*()` nor `error()` check whether the object contains the right value!
+Calling them incorrectly will result in undefined behavior.
+On the other hand, `value()` will throw an exception (`std::bad_expected_access`) if the object contains an error.
+Again, this is pretty similar to `std::optional`.
+
+```cpp
+template<class T, class E>
+class expected {
+    /*...*/
+    template<class T2, class E2> requires (/*...*/)
+    friend constexpr bool operator==(const expected& x, const expected<T2, E2>& y);
+    template<class T2> friend constexpr bool operator==(const expected& x, const T2& y);
+    template<class E2> friend constexpr bool operator==(const expected& x, const unexpected<E2>& y);
+    /*...*/
+};
+```
+
+Finally, we have the equality operators.
+Conveniently, we can compare a `std::expected` with a compatible `std::expected`, any type convertible to the expected value type, or even a `std::unexpected` error! This means we often won't have to dereference an object to compare it with a specific value.
+
+### Renaming Files, Continued
+
+Here's a demonstration of some of what we've just learned, continuing our example from before from a caller's perspective:
+
+```cpp
+const auto renamed = renameFile("file1.txt", "file2.txt");
+if (renamed.has_value()) {
+    if (renamed.value()) {
+        std::cout << "Successfully renamed the file.";
+    }
+    else {
+        std::cout << "File name was unchanged.";
+    }
+}
+else {
+    std::cerr << renamed.error().message();
+}
+```
+
+Hopefully you'll agree that `std::expected` makes code rather easy to read!
+
 ### Monadic Functions
+
+The few functions remaining are what I consider to be one of the most exciting parts of `std::expected`.
 
 ```cpp
 template<class T, class E>
@@ -310,16 +364,7 @@ class expected {
 };
 ```
 
-```cpp
-template<class T, class E>
-class expected {
-    /*...*/
-    template<class T2, class E2> requires (/*...*/)
-    friend constexpr bool operator==(const expected& x, const expected<T2, E2>& y);
-    template<class T2> friend constexpr bool operator==(const expected& x, const T2& y);
-    template<class E2> friend constexpr bool operator==(const expected& x, const unexpected<E2>& y);
-};
-```
+Talk about these functions.
 
 Whew, that was a lot of code.
 
