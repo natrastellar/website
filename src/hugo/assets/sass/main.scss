@@ -581,6 +581,10 @@ ul.pager {
 
   li {
     list-style-type: none;
+    padding: 0 40px;
+    ul {
+      margin-bottom: 0;
+    }
   }
 }
 
