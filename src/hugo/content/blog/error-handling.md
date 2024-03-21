@@ -169,7 +169,9 @@ Now we're starting to see why `std::unexpected` is useful: it indicates to the c
 Here's an example of this in action:
 
 ```cpp
-std::expected<bool, std::error_code> renameFile(const std::filesystem::path& oldFile, const std::filesystem::path& newFile) {
+std::expected<bool, std::error_code> renameFile(
+    const std::filesystem::path& oldFile,
+    const std::filesystem::path& newFile) {
     if (oldFile == newFile) {
         return false;
     }
