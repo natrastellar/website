@@ -4,7 +4,12 @@ date = 2024-03-20
 summary = "Writing ergonomic Result types."
 tags = ["c++", "development"]
 draft = true
+toc = true
 +++
+
+{{% note %}}
+This article assumes background knowledge in C++, particular C++17 standard library features and C++20 language features.
+{{% /note %}}
 
 I'm excited about C++23 for several reasons, but one of the biggest is the new header [\<expected\>](https://en.cppreference.com/w/cpp/header/expected), bringing with it one incredibly useful class template: `std::expected`.
 
@@ -164,49 +169,6 @@ From these, we can ascertain the following information:
     inline constexpr unexpect_t unexpect{};
     ```
 
-### std::expected In Action
-
-Now we're starting to see why `std::unexpected` is useful: it indicates to the compiler that we want to construct a `std::expected` object holding an error value.
-Here's an example of this in action:
-
-```cpp
-std::expected<bool, std::error_code> renameFile(
-    const std::filesystem::path& oldFile,
-    const std::filesystem::path& newFile) {
-    if (oldFile == newFile) {
-        return false;
-    }
-    std::error_code ec{};
-    std::filesystem::rename(oldFile, newFile, ec);
-    if (ec) {
-        return std::unexpected(std::move(ec));
-    }
-    return true;
-}
-```
-
-A caller of `renameFile` can easily determine:
-1. Whether or not renaming the file succeeded.
-2. Whether or not the file path was unchanged.
-3. If renaming the file failed, what error code was returned.
-
-Before `std::expected`, providing all of this information in the function return type alone might have been difficult or unwieldy!
-Before, we'd have to either pass in an out parameter by reference, return a `std::pair`, return a `std::variant`, create a bespoke return type that encapsulates the same data, or throw an exception.
-None of these options are ideal:
-- Out parameters passed by reference aren't easily distinguishable from in-out parameters.
-  Additionally, constructing both the success type and the failure type ahead of time might be expensive.
-- `std::pair` isn't very readable at a glance.
-  What is `first`? What is `second`?
-  There's nothing indicating that only one of the two members should be used.
-- `std::variant` requires lots of `std::get_if<...>()`.
-- No one wants to litter the code with a bunch of different tiny classes/structs simply for returning multiple pieces of information... but when space isn't a concern, this might have been the most readable option in the past.
-- Passing information by exceptions is not always possible, and even when it is, an uncaught exception could easily terminate the program.
-  Throwing an exception solely to pass information places a much larger burden on callers. I believe that exceptions are best kept limited to truly exceptional situations, especially when a better alternative exists.
-
-Now imagine how much more difficult it would have been if we needed to pass this error information way up the callstack. Especially so if we needed what the "success" type was.
-
-### Assignment
-
 ```cpp
 template<class T, class E>
 class expected {
@@ -242,6 +204,52 @@ class expected {
 };
 ```
 
+It probably won't be very surprising that `std::expected` is swappable.
+We can also emplace a value, much like `std::optional` or `std::variant`.
+
+### A Simple Example
+
+You might be starting to see why `std::unexpected` is useful: it indicates to the compiler that we want to - often implicitly -  construct a `std::expected` object holding an error value.
+This avoids having to explicitly construct a `std::expected` object and pass `std::unexpect`.
+Here's an example of this in action:
+
+```cpp
+std::expected<bool, std::error_code> renameFile(
+    const std::filesystem::path& oldFile,
+    const std::filesystem::path& newFile) {
+    if (oldFile == newFile) {
+        return false;
+    }
+    std::error_code ec{};
+    std::filesystem::rename(oldFile, newFile, ec);
+    if (ec) {
+        return std::unexpected(std::move(ec));
+    }
+    return true;
+}
+```
+
+You might be wondering why `std::expected` benefits us here.
+A caller of `renameFile` can easily determine:
+1. Whether or not renaming the file succeeded.
+2. Whether or not the file path was unchanged.
+3. If renaming the file failed, what error code was returned.
+
+Before `std::expected`, providing all of this information in the function return type alone might have been difficult or unwieldy!
+Before, we'd have to either pass in an out parameter by reference, return a `std::pair`, return a `std::variant`, create a bespoke return type that encapsulates the same data, or throw an exception.
+None of these options are ideal:
+- Out parameters passed by reference aren't easily distinguishable from in-out parameters.
+  Additionally, constructing both the success type and the failure type ahead of time might be expensive.
+- `std::pair` isn't very readable at a glance.
+  What is `first`? What is `second`?
+  There's nothing indicating that only one of the two members should be used.
+- `std::variant` requires lots of `std::get_if<...>()`.
+- No one wants to litter the code with a bunch of different tiny classes/structs simply for returning multiple pieces of information... but when space isn't a concern, this might have been the most readable option in the past.
+- Passing information by exceptions is not always possible, and even when it is, an uncaught exception could easily terminate the program.
+  Throwing an exception solely to pass information places a much larger burden on callers. I believe that exceptions are best kept limited to truly exceptional situations, especially when a better alternative exists.
+
+Now imagine how much more difficult it would have been if we needed to pass this error information way up the callstack. Especially so if we needed what the "success" type was.
+
 ### Accessors
 
 ```cpp
@@ -267,11 +275,6 @@ class expected {
     constexpr E& error() &;
     constexpr const E&& error() const &&;
     constexpr E&& error() &&;
-
-    template<class U> constexpr T value_or(U&& v) const &;
-    template<class U> constexpr T value_or(U&& v) &&;
-    template<class G = E> constexpr E error_or(G&& e) const &;
-    template<class G = E> constexpr E error_or(G&& e) &&;
     /*...*/
 };
 ```
@@ -282,6 +285,11 @@ class expected {
 template<class T, class E>
 class expected {
     /*...*/
+    template<class U> constexpr T value_or(U&& v) const &;
+    template<class U> constexpr T value_or(U&& v) &&;
+    template<class G = E> constexpr E error_or(G&& e) const &;
+    template<class G = E> constexpr E error_or(G&& e) &&;
+
     template<class F> constexpr auto and_then(F&& f) &;
     template<class F> constexpr auto and_then(F&& f) &&;
     template<class F> constexpr auto and_then(F&& f) const &;
