@@ -3,6 +3,7 @@ title = "Rust-like Error Handling in C++"
 date = 2024-03-20
 summary = "Writing ergonomic Result types."
 tags = ["c++", "development"]
+draft = true
 +++
 
 I'm excited about C++23 for several reasons, but one of the biggest is the new header [\<expected\>](https://en.cppreference.com/w/cpp/header/expected), bringing with it one incredibly useful class template: `std::expected`.
@@ -201,6 +202,8 @@ None of these options are ideal:
 - No one wants to litter the code with a bunch of different tiny classes/structs simply for returning multiple pieces of information... but when space isn't a concern, this might have been the most readable option in the past.
 - Passing information by exceptions is not always possible, and even when it is, an uncaught exception could easily terminate the program.
   Throwing an exception solely to pass information places a much larger burden on callers. I believe that exceptions are best kept limited to truly exceptional situations, especially when a better alternative exists.
+
+Now imagine how much more difficult it would have been if we needed to pass this error information way up the callstack. Especially so if we needed what the "success" type was.
 
 ### Assignment
 
