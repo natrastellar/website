@@ -766,7 +766,7 @@ code:not(.highlight code) {
   position: relative;
   pre {
     overflow-x: auto;
-    padding: 2px 4px;
+    padding: 1px 4px;
     border-radius: 5px;
   }
 
@@ -776,6 +776,8 @@ code:not(.highlight code) {
     position: absolute;
     right: 5px;
     color: $dark-link-color;
+    padding: 1px 4px;
+    background-color: darken(#282a36, 10%);
     &:hover {
       color: $light-text-color;
       background-color: $dark-primary-color;
