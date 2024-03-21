@@ -195,5 +195,6 @@ Changing them to LEFT JOINs should do the trick.
 
 Four hours later, it didn't actually do the trick.
 I messed with the schema for a while, tried re-writing the queries, tried dropping the view explicitly, and did a lot of print-style debugging. I ended up deleting the database file entirely and it instantly started working.
+My best guess is that I hadn't updated/recreated a table properly after a prior schema change I made.
 
-ANYWAY. Lesson learned. Delete your database, or something. If that doesn't inspire confidence in my ability to write budgeting software, nothing will.
+ANYWAY. Lesson learned. Delete your database, or something. If that doesn't inspire confidence in my ability to write budgeting software, nothing will ;).
