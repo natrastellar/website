@@ -11,6 +11,7 @@
     Pronouns1 = "they/she"
     Pronouns2 = "ray/rem"
     PronounsSite = "https://pronouns.within.lgbt/ray/rem/rayr/rayrs/remself"
+    ReadingSpeed = 212
 
   [en.menu]
     [[en.menu.main]]

@@ -14,7 +14,7 @@
               <time class="dt-updated" datetime="{{ .Lastmod | time }}" itemprop="dateUpdated">Updated {{ .Lastmod.Format "January 2, 2006"  }}</time>
             {{ end }}
             
-            <p>A {{ div .WordCount $.Site.Params.wordsPerMinute | math.Ceil }} minute read.</p>
+            <p>A {{ div .WordCount $.Site.Params.ReadingSpeed | math.Ceil }} minute read.</p>
           </div>
         </header>
 
