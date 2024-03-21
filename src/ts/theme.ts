@@ -37,7 +37,7 @@ function setTheme(dark: boolean) {
       setElementTheme(elements.item(i)!, dark);
     }
   }
-  const themedElementClasses = ['project-card', 'project-tag', 'post-meta', 'update', 'post-link-header', 'footer-main'];
+  const themedElementClasses = ['project-card', 'project-tag', 'post-meta', 'article-update', 'article-note', 'post-link-header', 'footer-main', 'table-of-contents'];
   for (const name of themedElementClasses) {
     const elements = document.getElementsByClassName(name);
     for (let i = 0; i < elements.length; ++i) {

@@ -568,12 +568,12 @@ ul.pager {
 .table-of-contents {
   padding: 0.25em 0.5em;
   margin-bottom: 1em;
-  background-color: $light-primary-color;
+  background-color: $light-secondary-color;
   @media (prefers-color-scheme: dark) {
     background-color: $dark-tertiary-color;
   }
   &.light {
-    background-color: $light-primary-color;
+    background-color: $light-secondary-color;
   }
   &.dark {
     background-color: $dark-tertiary-color;
@@ -593,21 +593,40 @@ ul.pager {
   margin-left: 1em;
 }
 
-.update {
+.article-update {
   padding: 1em;
   border-radius: 1em;
-  background-color: $light-secondary-color;
+  background-color: $light-update-background-color;
   color: $light-text-color;
   @media (prefers-color-scheme: dark) {
-    background-color: $dark-primary-color;
+    background-color: $dark-update-background-color;
     color: $light-text-color;
   }
   &.light {
-    background-color: $light-secondary-color;
+    background-color: $light-update-background-color;
     color: $light-text-color;
   }
   &.dark {
-    background-color: $dark-primary-color;
+    background-color: $dark-update-background-color;
+    color: $light-text-color;
+  }
+}
+
+.article-note {
+  padding: 1em;
+  border-radius: 1em;
+  background-color: $light-note-background-color;
+  color: $light-text-color;
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-note-background-color;
+    color: $light-text-color;
+  }
+  &.light {
+    background-color: $light-note-background-color;
+    color: $light-text-color;
+  }
+  &.dark {
+    background-color: $dark-note-background-color;
     color: $light-text-color;
   }
 }
