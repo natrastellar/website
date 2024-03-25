@@ -547,6 +547,16 @@ Next, we have the constructors and destructor.
     inline constexpr unexpect_t unexpect{};
     ```
 
+Here are some examples:
+```cpp
+std::expected<void, std::error_code> val1;
+std::expected<double, std::error_code> val2; // Holds 0.0
+auto val3 = std::expected<double, int>(2.5);
+std::expected<std::string, int> val4("hello world");
+std::expected<std::string, int> val5 = std::unexpected<int>(3);
+auto val6 = std::expected<double, int>(std::unexpect, 3);
+```
+
 #### Assignment
 
 ```cpp
@@ -589,6 +599,17 @@ class expected {
 
 Considering `std::unexpected` is swappable, it probably won't be very surprising that `std::expected` is swappable too.
 We can also `emplace()` a value, much like `std::optional` or `std::variant`.
+
+Here are some examples of assignment:
+```cpp
+std::expected<double, std::error_code> val1; // Holds 0.0
+val1 = 3.5;
+
+std::expected<std::string, int> val2;
+val2 = std::unexpected<int>(3);
+
+val1.emplace(1);
+```
 
 #### Accessors
 
@@ -650,7 +671,13 @@ class expected {
 
 Finally, we have the equality operators.
 Conveniently, we can compare a `std::expected` with a compatible `std::expected`, any type convertible to the value type, or even a `std::unexpected`!
-This means we often won't have to dereference an object to compare it with a specific value.
+
+This means we often won't have to dereference an object to compare it with a specific value:
+```cpp
+std::expected<double, std::error_code> val = 3.5;
+assert(val == 3.5);
+assert(val != std::unexpected{std::error_code{}});
+```
 
 ### Returning to Our Example
 
