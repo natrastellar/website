@@ -251,7 +251,7 @@ void onRenameSelectedFile(const std::filesystem::path& filePath) {
 }
 ```
 
-If `renameFile` returns false and no `std::filesystem` call failed, we still don't have information on why.
+If `renameFile` returns false and no `std::filesystem` call fails, we still don't have information on why.
 Additionally, we've muddied our API.
 It's not entirely clear what the `bool` in the pair represents at a glance.
 To be sure, we'd need to be able to see the function implementation or hope the function return value is documented.
@@ -385,7 +385,7 @@ void onRenameSelectedFile(const std::filesystem::path& filePath) {
 }
 ```
 
-We're more memory-efficient, now, and the success/error invariant is established.
+We're more memory-efficient now, and the success/error invariant is established.
 Unfortunately, `std::variant` doesn't lend itself well to simple code.
 I find both `std::get_if` and `std::visit` feel a little clunky, given that they're non-member functions[^5].
 If `renameFile` almost always succeeds, we're adding a lot of code to every caller.
@@ -400,7 +400,7 @@ Turns out that's exactly what we get with `std::expected`!
 
 ## Inspecting std::expected
 
-`std::expected` isn't too conceptually complicated, but it provides a lot of syntactical sugar, *and* it tries to be as zero-cost as possible.
+`std::expected` isn't too conceptually complicated, but it provides a lot of syntactic sugar, *and* it tries to be as zero-cost as possible.
 That means the class template definition is pretty long.
 Let's look at it in smaller pieces.
 
@@ -439,7 +439,7 @@ public:
 ```
 
 `std::unexpected` is a fairly simple wrapper around an arbitrary error type, `E`.
-- It can be constructed using the forwarding constructor or in-place any number of arguments, preceeded by an optional `std::initializer_list`.
+- It can be constructed using the forwarding constructor or in-place any number of arguments, preceded by an optional `std::initializer_list`.
   All constructors allow for conversions.
 - It's copyable, it's movable, and it's swappable.
 - The inner value can be accessed freely via the `error()` member function.
