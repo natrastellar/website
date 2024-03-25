@@ -1,6 +1,5 @@
 +++
 title = "A Newfound Love for Jekyll"
-subtitle = "Making the Front-End Bearable"
 publishdate = 2018-04-23T13:49:00-07:00
 lastmod = 2022-07-17T01:17:00-07:00
 aliases = [
